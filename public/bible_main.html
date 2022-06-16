@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/4d207b59aa.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="./css/swiper-bundle.min.css"
+        />
+
+    <script src="./js/swiper-bundle.min.js"></script>
+
+    <script src="./js/jquery-3.6.0.min.js"></script>
+
+    <style>
+
+/* If the screen size is 1200px wide or more, set the font-size to 80px */
+@media (min-width: 1200px) {
+  .font-resp {
+    font-size: 2vw;
+    font-weight: 600;
+    font-family: 'Noto Sans', sans-serif;
+  }
+}
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+@media (max-width: 1199.98px) {
+  .font-resp {
+    font-size: 3vw;
+    font-weight: 600;
+    font-family: 'Noto Sans', sans-serif;
+  }
+}        
+.card-margin {
+    margin-right: 10vw;
+}
+
+.card-margin:last-of-type {
+    margin-right: 0;
+}
+
+.swiper {
+  width: 100vw;
+  height: 300px;
+}
+
+.bible-title {
+    border: 1px solid #999
+}
+.col-6 {
+  border: 1px solid #c9c9c9;
+}
+
+    </style>
+</head>
+<body>
+
+    <div style="background:#ccc;padding-top:0.2rem;padding-bottom:0.2rem;padding-left:0.2rem;padding-right:0.2rem;">
+        <div class="container-fluid" style="background:#fff;">
+            <div class="row" id="bibles">
+                <div class="item" onclick="location.href='bible_old_genesis.html';">
+                    창세기
+                </div>
+                <div class="item">
+                    출애굽기
+                </div>
+                <div class="item">
+                    레위기
+                </div>
+                <div class="item">
+                    민수기
+                </div>
+                <div class="item">
+                    신명기
+                </div>
+                <div class="item">
+                    여호수아
+                </div>
+                <div class="item">
+                    사사기
+                </div>
+                <div class="item">
+                    룻기
+                </div>
+                <div class="item">
+                    사무엘상
+                </div>
+                <div class="item">
+                    사무엘하
+                </div>
+                <div class="item">
+                    열왕기상
+                </div>
+                <div class="item">
+                    열왕기하
+                </div>
+                <div class="item">
+                    역대상
+                </div>
+                <div class="item">
+                    역대하
+                </div>
+                <div class="item">
+                    에스라
+                </div>
+                <div class="item">
+                    느헤미야
+                </div>
+                <div class="item">
+                    에스더
+                </div>
+                <div class="item">
+                    욥기
+                </div>
+                <div class="item">
+                    시편
+                </div>
+                <div class="item">
+                    잠언
+                </div>
+                <div class="item">
+                    전도서
+                </div>
+                <div class="item">
+                    아가
+                </div>
+                <div class="item">
+                    이사야
+                </div>
+                <div class="item">
+                    예레미야
+                </div>
+                <div class="item">
+                    예레미야애가
+                </div>
+                <div class="item">
+                    에스겔
+                </div>
+                <div class="item">
+                    다니엘
+                </div>
+                <div class="item">
+                    호세아
+                </div>
+                <div class="item">
+                    요엘
+                </div>
+                <div class="item">
+                    아모스
+                </div>
+                <div class="item">
+                    오바댜
+                </div>
+                <div class="item">
+                    요나
+                </div>
+                <div class="item">
+                    미가
+                </div>
+                <div class="item">
+                    나훔
+                </div>
+                <div class="item">
+                    하박국
+                </div>
+                <div class="item">
+                    스바냐
+                </div>
+                <div class="item">
+                    학개
+                </div>
+                <div class="item">
+                    스가랴
+                </div>
+                <div class="item">
+                    말라기
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script>
+$(document).ready(function() {
+    $('.item').attr('class', 'col-6 col-sm-4 col-lg-3 col-xl-2 text-center bible-title p-3')
+})
+
+(function() {
+    window.addEventListener('resize', handle_resize);
+    modify_border();
+    function handle_resize() {
+        console.log('resize', document.body.clientWidth);
+
+        modify_border();
+
+    }
+
+    function remove_dummy() {
+        const boxes = document.querySelectorAll('.dummy');
+
+        boxes.forEach(box => {
+            box.remove();
+        });
+    }
+    function modify_border() {
+        var childNodes = document.getElementById("bibles").childNodes;
+        var elementNodeCount = 0;
+
+        remove_dummy();
+        if(document.body.clientWidth < 576) {   // extra small
+            elementNodeCount = 0;
+            childNodes = document.getElementById("bibles").childNodes;
+            for(var i = 0; i < childNodes.length; i++) {
+                if(childNodes[i].nodeType !== 3) {
+                    if((elementNodeCount%2) == 0) {
+                        childNodes[i].style.cssText = '';
+                    }
+                    else {
+                        childNodes[i].style.cssText = 'border-left:0px;'
+                    }
+                    if(elementNodeCount>1) {
+                        childNodes[i].style.cssText += 'border-top:0px;'
+                    }
+                    elementNodeCount++;
+                }            
+            }
+            if((elementNodeCount%2)===1) {
+                var childDiv = document.createElement('div');
+                var div = document.getElementById("bibles").appendChild(childDiv);
+                div.className = 'col-6 dummy';
+                div.style.cssText = "background:#ccc;"
+                console.log('a')
+            }
+        }
+        else if(document.body.clientWidth < 992) {   // small(col-sm-)
+            console.log('col-sm')
+
+            elementNodeCount = 0;
+            childNodes = document.getElementById("bibles").childNodes;
+            for(var i = 0; i < childNodes.length; i++) {
+                if(childNodes[i].nodeType !== 3) {
+                    if((elementNodeCount%3) !== 0) {
+                        childNodes[i].style.cssText = 'border-left:0px;'
+                    }
+                    else {
+                        childNodes[i].style.cssText = ''
+                    }
+                    if(elementNodeCount>2) {
+                        childNodes[i].style.cssText += 'border-top:0px;'
+                    }
+                    elementNodeCount++;
+                }            
+            }
+            if((elementNodeCount%3) > 0) {
+                var childDiv = document.createElement('div');
+                var div = document.getElementById("bibles").appendChild(childDiv);
+                div.className = 'col-sm-4 dummy';
+                div.style.cssText = "background:#ccc;"
+                console.log('a')
+            }
+        }
+        else if(document.body.clientWidth < 1200) {   // large(col-lg-)
+            console.log('col-lg')
+
+            elementNodeCount = 0;
+            childNodes = document.getElementById("bibles").childNodes;
+            for(var i = 0; i < childNodes.length; i++) {
+                if(childNodes[i].nodeType !== 3) {
+                    if((elementNodeCount%4) !== 0) {
+                        childNodes[i].style.cssText = 'border-left:0px;'
+                    }
+                    else {
+                        childNodes[i].style.cssText = ''
+                    }
+                    if(elementNodeCount>3) {
+                        childNodes[i].style.cssText += 'border-top:0px;'
+                    }
+                    elementNodeCount++;
+                }            
+            }
+            if((elementNodeCount%4) > 0) {
+                var childDiv = document.createElement('div');
+                var div = document.getElementById("bibles").appendChild(childDiv);
+                div.className = 'col-lg-3 dummy';
+                div.style.cssText = "background:#ccc;"
+                console.log('a')
+            }
+        }
+        else {   // extra large(col-xl-)
+            console.log('col-xl')
+
+            elementNodeCount = 0;
+            childNodes = document.getElementById("bibles").childNodes;
+            for(var i = 0; i < childNodes.length; i++) {
+                if(childNodes[i].nodeType !== 3) {
+                    if((elementNodeCount%6) !== 0) {
+                        childNodes[i].style.cssText = 'border-left:0px;'
+                    }
+                    else {
+                        childNodes[i].style.cssText = ''
+                    }
+                    if(elementNodeCount>2) {
+                        childNodes[i].style.cssText += 'border-top:0px;'
+                    }
+                    elementNodeCount++;
+                }            
+            }
+            if((elementNodeCount%6) > 0) {
+                console.log((elementNodeCount%6))
+                for(i=(elementNodeCount%6);i<6;i++) {
+                    var childDiv = document.createElement('div');
+                    var div = document.getElementById("bibles").appendChild(childDiv);
+                    div.className = 'col-xl-2 dummy';
+                    div.style.cssText = "background:#ccc;"
+                    console.log('a')
+                }
+            }
+        }
+        childNodes = document.getElementById("bibles").childNodes;
+        for(var i = 0; i < childNodes.length; i++) {
+            if(childNodes[i].nodeType !== 3) {
+                childNodes[i].style.cssText += 'cursor:pointer;';
+                console.log('cursor')
+            }
+        }
+    }
+}());
+
+    </script>
+</body>
+</html>
